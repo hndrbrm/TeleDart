@@ -9,15 +9,15 @@ part of 'model.dart';
 Animation _$AnimationFromJson(Map<String, dynamic> json) => Animation(
       fileId: json['file_id'] as String,
       fileUniqueId: json['file_unique_id'] as String,
-      width: json['width'] as int,
-      height: json['height'] as int,
-      duration: json['duration'] as int,
+      width: (json['width'] as num).toInt(),
+      height: (json['height'] as num).toInt(),
+      duration: (json['duration'] as num).toInt(),
       thumbnail: json['thumbnail'] == null
           ? null
           : PhotoSize.fromJson(json['thumbnail'] as Map<String, dynamic>),
       fileName: json['file_name'] as String?,
       mimeType: json['mime_type'] as String?,
-      fileSize: json['file_size'] as int?,
+      fileSize: (json['file_size'] as num?)?.toInt(),
     );
 
 Map<String, dynamic> _$AnimationToJson(Animation instance) {
@@ -45,12 +45,12 @@ Map<String, dynamic> _$AnimationToJson(Animation instance) {
 Audio _$AudioFromJson(Map<String, dynamic> json) => Audio(
       fileId: json['file_id'] as String,
       fileUniqueId: json['file_unique_id'] as String,
-      duration: json['duration'] as int,
+      duration: (json['duration'] as num).toInt(),
       performer: json['performer'] as String?,
       title: json['title'] as String?,
       fileName: json['file_name'] as String?,
       mimeType: json['mime_type'] as String?,
-      fileSize: json['file_size'] as int?,
+      fileSize: (json['file_size'] as num?)?.toInt(),
       thumbnail: json['thumbnail'] == null
           ? null
           : PhotoSize.fromJson(json['thumbnail'] as Map<String, dynamic>),
@@ -335,9 +335,10 @@ ChatInviteLink _$ChatInviteLinkFromJson(Map<String, dynamic> json) =>
       isPrimary: json['is_primary'] as bool,
       isRevoked: json['is_revoked'] as bool,
       name: json['name'] as String?,
-      expireDate: json['expire_date'] as int?,
-      memberLimit: json['member_limit'] as int?,
-      pendingJoinRequestCount: json['pending_join_request_count'] as int?,
+      expireDate: (json['expire_date'] as num?)?.toInt(),
+      memberLimit: (json['member_limit'] as num?)?.toInt(),
+      pendingJoinRequestCount:
+          (json['pending_join_request_count'] as num?)?.toInt(),
     );
 
 Map<String, dynamic> _$ChatInviteLinkToJson(ChatInviteLink instance) {
@@ -366,8 +367,8 @@ ChatJoinRequest _$ChatJoinRequestFromJson(Map<String, dynamic> json) =>
     ChatJoinRequest(
       chat: Chat.fromJson(json['chat'] as Map<String, dynamic>),
       from: User.fromJson(json['from'] as Map<String, dynamic>),
-      userChatId: json['user_chat_id'] as int,
-      date: json['date'] as int,
+      userChatId: (json['user_chat_id'] as num).toInt(),
+      date: (json['date'] as num).toInt(),
       bio: json['bio'] as String?,
       inviteLink: json['invite_link'] == null
           ? null
@@ -460,7 +461,7 @@ ChatMemberBanned _$ChatMemberBannedFromJson(Map<String, dynamic> json) =>
     ChatMemberBanned(
       status: json['status'] as String,
       user: User.fromJson(json['user'] as Map<String, dynamic>),
-      untilDate: json['until_date'] as int,
+      untilDate: (json['until_date'] as num).toInt(),
     );
 
 Map<String, dynamic> _$ChatMemberBannedToJson(ChatMemberBanned instance) =>
@@ -540,7 +541,7 @@ ChatMemberRestricted _$ChatMemberRestrictedFromJson(
       canSendOtherMessages: json['can_send_other_messages'] as bool? ?? false,
       canAddWebPagePreviews:
           json['can_add_web_page_previews'] as bool? ?? false,
-      untilDate: json['until_date'] as int,
+      untilDate: (json['until_date'] as num).toInt(),
     );
 
 Map<String, dynamic> _$ChatMemberRestrictedToJson(
@@ -596,7 +597,7 @@ ChatMemberUpdated _$ChatMemberUpdatedFromJson(Map<String, dynamic> json) =>
           : ChatInviteLink.fromJson(
               json['invite_link'] as Map<String, dynamic>),
       viaChatFolderInviteLink: json['via_chat_folder_invite_link'] as bool?,
-      date: json['date'] as int?,
+      date: (json['date'] as num?)?.toInt(),
     );
 
 Map<String, dynamic> _$ChatMemberUpdatedToJson(ChatMemberUpdated instance) {
@@ -688,8 +689,8 @@ Map<String, dynamic> _$ChatPhotoToJson(ChatPhoto instance) => <String, dynamic>{
     };
 
 ChatShared _$ChatSharedFromJson(Map<String, dynamic> json) => ChatShared(
-      requestId: json['request_id'] as int,
-      userId: json['user_id'] as int,
+      requestId: (json['request_id'] as num).toInt(),
+      userId: (json['user_id'] as num).toInt(),
     );
 
 Map<String, dynamic> _$ChatSharedToJson(ChatShared instance) =>
@@ -699,7 +700,7 @@ Map<String, dynamic> _$ChatSharedToJson(ChatShared instance) =>
     };
 
 Chat _$ChatFromJson(Map<String, dynamic> json) => Chat(
-      id: json['id'] as int,
+      id: (json['id'] as num).toInt(),
       type: json['type'] as String,
       title: json['title'] as String?,
       username: json['username'] as String?,
@@ -730,15 +731,16 @@ Chat _$ChatFromJson(Map<String, dynamic> json) => Chat(
           ? null
           : ChatPermissions.fromJson(
               json['permissions'] as Map<String, dynamic>),
-      slowModeDelay: json['slow_mode_delay'] as int?,
-      messageAutoDeleteTime: json['message_auto_delete_time'] as int?,
+      slowModeDelay: (json['slow_mode_delay'] as num?)?.toInt(),
+      messageAutoDeleteTime:
+          (json['message_auto_delete_time'] as num?)?.toInt(),
       hasAggressiveAntiSpamEnabled:
           json['has_aggressive_anti_spam_enabled'] as bool?,
       hasHiddenMembers: json['has_hidden_members'] as bool?,
       hasProtectedContent: json['has_protected_content'] as bool?,
       stickerSetName: json['sticker_set_name'] as String?,
       canSetStickerSet: json['can_set_sticker_set'] as bool?,
-      linkedChatId: json['linked_chat_id'] as int?,
+      linkedChatId: (json['linked_chat_id'] as num?)?.toInt(),
       location: json['location'] == null
           ? null
           : ChatLocation.fromJson(json['location'] as Map<String, dynamic>),
@@ -823,7 +825,7 @@ Contact _$ContactFromJson(Map<String, dynamic> json) => Contact(
       phoneNumber: json['phone_number'] as String,
       firstName: json['first_name'] as String,
       lastName: json['last_name'] as String?,
-      userId: json['user_id'] as int?,
+      userId: (json['user_id'] as num?)?.toInt(),
       vcard: json['vcard'] as String?,
     );
 
@@ -846,7 +848,7 @@ Map<String, dynamic> _$ContactToJson(Contact instance) {
 }
 
 Dice _$DiceFromJson(Map<String, dynamic> json) => Dice(
-      value: json['value'] as int,
+      value: (json['value'] as num).toInt(),
       emoji: json['emoji'] as String,
     );
 
@@ -863,7 +865,7 @@ Document _$DocumentFromJson(Map<String, dynamic> json) => Document(
           : PhotoSize.fromJson(json['thumbnail'] as Map<String, dynamic>),
       fileName: json['file_name'] as String?,
       mimeType: json['mime_type'] as String?,
-      fileSize: json['file_size'] as int?,
+      fileSize: (json['file_size'] as num?)?.toInt(),
     );
 
 Map<String, dynamic> _$DocumentToJson(Document instance) {
@@ -954,7 +956,7 @@ Map<String, dynamic> _$EncryptedPassportElementToJson(
 File _$FileFromJson(Map<String, dynamic> json) => File(
       fileId: json['file_id'] as String,
       fileUniqueId: json['file_unique_id'] as String,
-      fileSize: json['file_size'] as int?,
+      fileSize: (json['file_size'] as num?)?.toInt(),
       filePath: json['file_path'] as String?,
     );
 
@@ -1006,7 +1008,7 @@ Map<String, dynamic> _$ForumTopicClosedToJson(ForumTopicClosed instance) =>
 ForumTopicCreated _$ForumTopicCreatedFromJson(Map<String, dynamic> json) =>
     ForumTopicCreated(
       name: json['name'] as String,
-      iconColor: json['icon_color'] as int,
+      iconColor: (json['icon_color'] as num).toInt(),
       iconCustomEmojiId: json['icon_custom_emoji_id'] as String?,
     );
 
@@ -1055,7 +1057,7 @@ Map<String, dynamic> _$ForumTopicReopenedToJson(ForumTopicReopened instance) =>
 ForumTopic _$ForumTopicFromJson(Map<String, dynamic> json) => ForumTopic(
       messageThreadId: json['message_thread_id'] as String,
       name: json['name'] as String,
-      iconColor: json['icon_color'] as int,
+      iconColor: (json['icon_color'] as num).toInt(),
       iconCustomEmojiId: json['icon_custom_emoji_id'] as String?,
     );
 
@@ -1078,9 +1080,9 @@ Map<String, dynamic> _$ForumTopicToJson(ForumTopic instance) {
 
 GameHighScore _$GameHighScoreFromJson(Map<String, dynamic> json) =>
     GameHighScore(
-      position: json['position'] as int,
+      position: (json['position'] as num).toInt(),
       user: User.fromJson(json['user'] as Map<String, dynamic>),
-      score: json['score'] as int,
+      score: (json['score'] as num).toInt(),
     );
 
 Map<String, dynamic> _$GameHighScoreToJson(GameHighScore instance) =>
@@ -1268,7 +1270,7 @@ InlineQueryResultAudio _$InlineQueryResultAudioFromJson(
       caption: json['caption'] as String?,
       parseMode: json['parse_mode'] as String?,
       performer: json['performer'] as String?,
-      audioDuration: json['audio_duration'] as int?,
+      audioDuration: (json['audio_duration'] as num?)?.toInt(),
       captionEntities: (json['caption_entities'] as List<dynamic>?)
           ?.map((e) => MessageEntity.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -1687,8 +1689,8 @@ InlineQueryResultContact _$InlineQueryResultContactFromJson(
           : InputMessageContent.fromJson(
               json['input_message_content'] as Map<String, dynamic>),
       thumbnailUrl: json['thumbnail_url'] as String?,
-      thumbnailWidth: json['thumbnail_width'] as int?,
-      thumbnailHeight: json['thumbnail_height'] as int?,
+      thumbnailWidth: (json['thumbnail_width'] as num?)?.toInt(),
+      thumbnailHeight: (json['thumbnail_height'] as num?)?.toInt(),
     );
 
 Map<String, dynamic> _$InlineQueryResultContactToJson(
@@ -1739,8 +1741,8 @@ InlineQueryResultDocument _$InlineQueryResultDocumentFromJson(
           : InputMessageContent.fromJson(
               json['input_message_content'] as Map<String, dynamic>),
       thumbnailUrl: json['thumbnail_url'] as String?,
-      thumbnailWidth: json['thumbnail_width'] as int?,
-      thumbnailHeight: json['thumbnail_height'] as int?,
+      thumbnailWidth: (json['thumbnail_width'] as num?)?.toInt(),
+      thumbnailHeight: (json['thumbnail_height'] as num?)?.toInt(),
     );
 
 Map<String, dynamic> _$InlineQueryResultDocumentToJson(
@@ -1808,9 +1810,9 @@ InlineQueryResultGif _$InlineQueryResultGifFromJson(
       id: json['id'] as String,
       type: json['type'] as String? ?? InlineQueryResult.typeGif,
       gifUrl: json['gif_url'] as String,
-      gifWidth: json['gif_width'] as int?,
-      gifHeight: json['gif_height'] as int?,
-      gifDuration: json['gif_duration'] as int?,
+      gifWidth: (json['gif_width'] as num?)?.toInt(),
+      gifHeight: (json['gif_height'] as num?)?.toInt(),
+      gifDuration: (json['gif_duration'] as num?)?.toInt(),
       thumbnailUrl: json['thumbnail_url'] as String,
       thumbnailMimeType: json['thumbnail_mime_type'] as String?,
       title: json['title'] as String?,
@@ -1867,9 +1869,9 @@ InlineQueryResultLocation _$InlineQueryResultLocationFromJson(
       longitude: (json['longitude'] as num).toDouble(),
       title: json['title'] as String,
       horizontalAccuracy: (json['horizontal_accuracy'] as num?)?.toDouble(),
-      livePeriod: json['live_period'] as int?,
-      heading: json['heading'] as int?,
-      proximityAlertRadius: json['proximity_alert_radius'] as int?,
+      livePeriod: (json['live_period'] as num?)?.toInt(),
+      heading: (json['heading'] as num?)?.toInt(),
+      proximityAlertRadius: (json['proximity_alert_radius'] as num?)?.toInt(),
       replyMarkup: json['reply_markup'] == null
           ? null
           : InlineKeyboardMarkup.fromJson(
@@ -1879,8 +1881,8 @@ InlineQueryResultLocation _$InlineQueryResultLocationFromJson(
           : InputMessageContent.fromJson(
               json['input_message_content'] as Map<String, dynamic>),
       thumbnailUrl: json['thumbnail_url'] as String?,
-      thumbnailWidth: json['thumbnail_width'] as int?,
-      thumbnailHeight: json['thumbnail_height'] as int?,
+      thumbnailWidth: (json['thumbnail_width'] as num?)?.toInt(),
+      thumbnailHeight: (json['thumbnail_height'] as num?)?.toInt(),
     );
 
 Map<String, dynamic> _$InlineQueryResultLocationToJson(
@@ -1917,9 +1919,9 @@ InlineQueryResultMpeg4Gif _$InlineQueryResultMpeg4GifFromJson(
       id: json['id'] as String,
       type: json['type'] as String? ?? InlineQueryResult.typeMpeg4Gif,
       mpeg4Url: json['mpeg4_url'] as String,
-      mpeg4Width: json['mpeg4_width'] as int?,
-      mpeg4Height: json['mpeg4_height'] as int?,
-      mpeg4Duration: json['mpeg4_duration'] as int?,
+      mpeg4Width: (json['mpeg4_width'] as num?)?.toInt(),
+      mpeg4Height: (json['mpeg4_height'] as num?)?.toInt(),
+      mpeg4Duration: (json['mpeg4_duration'] as num?)?.toInt(),
       thumbnailUrl: json['thumbnail_url'] as String,
       thumbnailMimeType: json['thumbnail_mime_type'] as String?,
       title: json['title'] as String?,
@@ -1974,8 +1976,8 @@ InlineQueryResultPhoto _$InlineQueryResultPhotoFromJson(
       type: json['type'] as String? ?? InlineQueryResult.typePhoto,
       photoUrl: json['photo_url'] as String,
       thumbnailUrl: json['thumbnail_url'] as String,
-      photoWidth: json['photo_width'] as int?,
-      photoHeight: json['photo_height'] as int?,
+      photoWidth: (json['photo_width'] as num?)?.toInt(),
+      photoHeight: (json['photo_height'] as num?)?.toInt(),
       title: json['title'] as String?,
       description: json['description'] as String?,
       caption: json['caption'] as String?,
@@ -2043,8 +2045,8 @@ InlineQueryResultVenue _$InlineQueryResultVenueFromJson(
           : InputMessageContent.fromJson(
               json['input_message_content'] as Map<String, dynamic>),
       thumbnailUrl: json['thumbnail_url'] as String?,
-      thumbnailWidth: json['thumbnail_width'] as int?,
-      thumbnailHeight: json['thumbnail_height'] as int?,
+      thumbnailWidth: (json['thumbnail_width'] as num?)?.toInt(),
+      thumbnailHeight: (json['thumbnail_height'] as num?)?.toInt(),
     );
 
 Map<String, dynamic> _$InlineQueryResultVenueToJson(
@@ -2087,9 +2089,9 @@ InlineQueryResultVideo _$InlineQueryResultVideoFromJson(
       title: json['title'] as String,
       caption: json['caption'] as String?,
       parseMode: json['parse_mode'] as String?,
-      videoWidth: json['video_width'] as int?,
-      videoHeight: json['video_height'] as int?,
-      videoDuration: json['video_duration'] as int?,
+      videoWidth: (json['video_width'] as num?)?.toInt(),
+      videoHeight: (json['video_height'] as num?)?.toInt(),
+      videoDuration: (json['video_duration'] as num?)?.toInt(),
       description: json['description'] as String?,
       captionEntities: (json['caption_entities'] as List<dynamic>?)
           ?.map((e) => MessageEntity.fromJson(e as Map<String, dynamic>))
@@ -2143,7 +2145,7 @@ InlineQueryResultVoice _$InlineQueryResultVoiceFromJson(
       title: json['title'] as String,
       caption: json['caption'] as String?,
       parseMode: json['parse_mode'] as String?,
-      voiceDuration: json['voice_duration'] as int?,
+      voiceDuration: (json['voice_duration'] as num?)?.toInt(),
       captionEntities: (json['caption_entities'] as List<dynamic>?)
           ?.map((e) => MessageEntity.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -2303,14 +2305,14 @@ InputInvoiceMessageContent _$InputInvoiceMessageContentFromJson(
       prices: (json['prices'] as List<dynamic>)
           .map((e) => LabeledPrice.fromJson(e as Map<String, dynamic>))
           .toList(),
-      maxTipAmount: json['max_tip_amount'] as int?,
+      maxTipAmount: (json['max_tip_amount'] as num?)?.toInt(),
       suggestedTipAmounts: (json['suggested_tip_amounts'] as List<dynamic>?)
-          ?.map((e) => e as int)
+          ?.map((e) => (e as num).toInt())
           .toList(),
       providerData: json['provider_data'] as String?,
-      photoSize: json['photo_size'] as int?,
-      photoWidth: json['photo_width'] as int?,
-      photoHeight: json['photo_height'] as int?,
+      photoSize: (json['photo_size'] as num?)?.toInt(),
+      photoWidth: (json['photo_width'] as num?)?.toInt(),
+      photoHeight: (json['photo_height'] as num?)?.toInt(),
       needName: json['need_name'] as bool?,
       needPhoneNumber: json['need_phone_number'] as bool?,
       needEmail: json['need_email'] as bool?,
@@ -2361,9 +2363,9 @@ InputLocationMessageContent _$InputLocationMessageContentFromJson(
       latitude: (json['latitude'] as num).toDouble(),
       longitude: (json['longitude'] as num).toDouble(),
       horizontalAccuracy: (json['horizontal_accuracy'] as num?)?.toDouble(),
-      livePeriod: json['live_period'] as int?,
-      heading: json['heading'] as int?,
-      proximityAlertRadius: json['proximity_alert_radius'] as int?,
+      livePeriod: (json['live_period'] as num?)?.toInt(),
+      heading: (json['heading'] as num?)?.toInt(),
+      proximityAlertRadius: (json['proximity_alert_radius'] as num?)?.toInt(),
     );
 
 Map<String, dynamic> _$InputLocationMessageContentToJson(
@@ -2396,9 +2398,9 @@ InputMediaAnimation _$InputMediaAnimationFromJson(Map<String, dynamic> json) =>
       captionEntities: (json['caption_entities'] as List<dynamic>?)
           ?.map((e) => MessageEntity.fromJson(e as Map<String, dynamic>))
           .toList(),
-      width: json['width'] as int?,
-      height: json['height'] as int?,
-      duration: json['duration'] as int?,
+      width: (json['width'] as num?)?.toInt(),
+      height: (json['height'] as num?)?.toInt(),
+      duration: (json['duration'] as num?)?.toInt(),
       hasSpoiler: json['has_spoiler'] as bool?,
     );
 
@@ -2436,7 +2438,7 @@ InputMediaAudio _$InputMediaAudioFromJson(Map<String, dynamic> json) =>
       captionEntities: (json['caption_entities'] as List<dynamic>?)
           ?.map((e) => MessageEntity.fromJson(e as Map<String, dynamic>))
           .toList(),
-      duration: json['duration'] as int?,
+      duration: (json['duration'] as num?)?.toInt(),
       performer: json['performer'] as String?,
       title: json['title'] as String?,
     );
@@ -2542,9 +2544,9 @@ InputMediaVideo _$InputMediaVideoFromJson(Map<String, dynamic> json) =>
           ?.map((e) => MessageEntity.fromJson(e as Map<String, dynamic>))
           .toList(),
       thumbnail: json['thumbnail'] as String?,
-      width: json['width'] as int?,
-      height: json['height'] as int?,
-      duration: json['duration'] as int?,
+      width: (json['width'] as num?)?.toInt(),
+      height: (json['height'] as num?)?.toInt(),
+      duration: (json['duration'] as num?)?.toInt(),
       supportsStreaming: json['supports_streaming'] as bool?,
       hasSpoiler: json['has_spoiler'] as bool?,
     );
@@ -2743,7 +2745,7 @@ Invoice _$InvoiceFromJson(Map<String, dynamic> json) => Invoice(
       description: json['description'] as String,
       startParameter: json['start_parameter'] as String,
       currency: json['currency'] as String,
-      totalAmount: json['total_amount'] as int,
+      totalAmount: (json['total_amount'] as num).toInt(),
     );
 
 Map<String, dynamic> _$InvoiceToJson(Invoice instance) => <String, dynamic>{
@@ -2777,7 +2779,7 @@ Map<String, dynamic> _$KeyboardButtonPollTypeToJson(
 KeyboardButtonRequestChat _$KeyboardButtonRequestChatFromJson(
         Map<String, dynamic> json) =>
     KeyboardButtonRequestChat(
-      requestId: json['request_id'] as int,
+      requestId: (json['request_id'] as num).toInt(),
       chatIsChannel: json['chat_is_channel'] as bool,
       charIsForum: json['char_is_forum'] as bool?,
       chatHasUsername: json['chat_has_username'] as bool?,
@@ -2820,7 +2822,7 @@ Map<String, dynamic> _$KeyboardButtonRequestChatToJson(
 KeyboardButtonRequestUser _$KeyboardButtonRequestUserFromJson(
         Map<String, dynamic> json) =>
     KeyboardButtonRequestUser(
-      requestId: json['request_id'] as int,
+      requestId: (json['request_id'] as num).toInt(),
       userIsBot: json['user_is_bot'] as bool?,
       userIsPremium: json['user_is_premium'] as bool?,
     );
@@ -2885,7 +2887,7 @@ Map<String, dynamic> _$KeyboardButtonToJson(KeyboardButton instance) {
 
 LabeledPrice _$LabeledPriceFromJson(Map<String, dynamic> json) => LabeledPrice(
       label: json['label'] as String,
-      amount: json['amount'] as int,
+      amount: (json['amount'] as num).toInt(),
     );
 
 Map<String, dynamic> _$LabeledPriceToJson(LabeledPrice instance) =>
@@ -2898,9 +2900,9 @@ Location _$LocationFromJson(Map<String, dynamic> json) => Location(
       longitude: (json['longitude'] as num).toDouble(),
       latitude: (json['latitude'] as num).toDouble(),
       horizontalAccuracy: (json['horizontal_accuracy'] as num?)?.toDouble(),
-      livePeriod: json['live_period'] as int?,
-      heading: json['heading'] as int?,
-      proximityAlertRadius: json['proximity_alert_radius'] as int?,
+      livePeriod: (json['live_period'] as num?)?.toInt(),
+      heading: (json['heading'] as num?)?.toInt(),
+      proximityAlertRadius: (json['proximity_alert_radius'] as num?)?.toInt(),
     );
 
 Map<String, dynamic> _$LocationToJson(Location instance) {
@@ -3007,7 +3009,7 @@ Map<String, dynamic> _$MenuButtonToJson(MenuButton instance) =>
 MessageAutoDeleteTimerChanged _$MessageAutoDeleteTimerChangedFromJson(
         Map<String, dynamic> json) =>
     MessageAutoDeleteTimerChanged(
-      messageAutoDeleteTime: json['message_auto_delete_time'] as int,
+      messageAutoDeleteTime: (json['message_auto_delete_time'] as num).toInt(),
     );
 
 Map<String, dynamic> _$MessageAutoDeleteTimerChangedToJson(
@@ -3019,8 +3021,8 @@ Map<String, dynamic> _$MessageAutoDeleteTimerChangedToJson(
 MessageEntity _$MessageEntityFromJson(Map<String, dynamic> json) =>
     MessageEntity(
       type: json['type'] as String,
-      offset: json['offset'] as int,
-      length: json['length'] as int,
+      offset: (json['offset'] as num).toInt(),
+      length: (json['length'] as num).toInt(),
       url: json['url'] as String?,
       user: json['user'] == null
           ? null
@@ -3050,7 +3052,7 @@ Map<String, dynamic> _$MessageEntityToJson(MessageEntity instance) {
 }
 
 MessageId _$MessageIdFromJson(Map<String, dynamic> json) => MessageId(
-      messageId: json['message_id'] as int,
+      messageId: (json['message_id'] as num).toInt(),
     );
 
 Map<String, dynamic> _$MessageIdToJson(MessageId instance) => <String, dynamic>{
@@ -3058,15 +3060,15 @@ Map<String, dynamic> _$MessageIdToJson(MessageId instance) => <String, dynamic>{
     };
 
 Message _$MessageFromJson(Map<String, dynamic> json) => Message(
-      messageId: json['message_id'] as int,
-      messageThreadId: json['message_thread_id'] as int?,
+      messageId: (json['message_id'] as num).toInt(),
+      messageThreadId: (json['message_thread_id'] as num?)?.toInt(),
       from: json['from'] == null
           ? null
           : User.fromJson(json['from'] as Map<String, dynamic>),
       senderChat: json['sender_chat'] == null
           ? null
           : Chat.fromJson(json['sender_chat'] as Map<String, dynamic>),
-      date: json['date'] as int,
+      date: (json['date'] as num).toInt(),
       chat: Chat.fromJson(json['chat'] as Map<String, dynamic>),
       forwardFrom: json['forward_from'] == null
           ? null
@@ -3074,10 +3076,10 @@ Message _$MessageFromJson(Map<String, dynamic> json) => Message(
       forwardFromChat: json['forward_from_chat'] == null
           ? null
           : Chat.fromJson(json['forward_from_chat'] as Map<String, dynamic>),
-      forwardFromMessageId: json['forward_from_message_id'] as int?,
+      forwardFromMessageId: (json['forward_from_message_id'] as num?)?.toInt(),
       forwardSignature: json['forward_signature'] as String?,
       forwardSenderName: json['forward_sender_name'] as String?,
-      forwardDate: json['forward_date'] as int?,
+      forwardDate: (json['forward_date'] as num?)?.toInt(),
       isTopicMessage: json['is_topic_message'] as bool?,
       isAutomaticForward: json['is_automatic_forward'] as bool?,
       replyToMessage: json['reply_to_message'] == null
@@ -3086,7 +3088,7 @@ Message _$MessageFromJson(Map<String, dynamic> json) => Message(
       viaBot: json['via_bot'] == null
           ? null
           : User.fromJson(json['via_bot'] as Map<String, dynamic>),
-      editDate: json['edit_date'] as int?,
+      editDate: (json['edit_date'] as num?)?.toInt(),
       hasProtectedContent: json['has_protected_content'] as bool?,
       mediaGroupId: json['media_group_id'] as String?,
       authorSignature: json['author_signature'] as String?,
@@ -3164,8 +3166,8 @@ Message _$MessageFromJson(Map<String, dynamic> json) => Message(
               : MessageAutoDeleteTimerChanged.fromJson(
                   json['message_auto_delete_timer_changed']
                       as Map<String, dynamic>),
-      migrateToChatId: json['migrate_to_chat_id'] as int?,
-      migrateFromChatId: json['migrate_from_chat_id'] as int?,
+      migrateToChatId: (json['migrate_to_chat_id'] as num?)?.toInt(),
+      migrateFromChatId: (json['migrate_from_chat_id'] as num?)?.toInt(),
       pinnedMessage: json['pinned_message'] == null
           ? null
           : Message.fromJson(json['pinned_message'] as Map<String, dynamic>),
@@ -3566,8 +3568,8 @@ Map<String, dynamic> _$PassportElementErrorToJson(
 PassportFile _$PassportFileFromJson(Map<String, dynamic> json) => PassportFile(
       fileId: json['file_id'] as String,
       fileUniqueId: json['file_unique_id'] as String,
-      fileSize: json['file_size'] as int,
-      fileDate: json['file_date'] as int,
+      fileSize: (json['file_size'] as num).toInt(),
+      fileDate: (json['file_date'] as num).toInt(),
     );
 
 Map<String, dynamic> _$PassportFileToJson(PassportFile instance) =>
@@ -3581,9 +3583,9 @@ Map<String, dynamic> _$PassportFileToJson(PassportFile instance) =>
 PhotoSize _$PhotoSizeFromJson(Map<String, dynamic> json) => PhotoSize(
       fileId: json['file_id'] as String,
       fileUniqueId: json['file_unique_id'] as String,
-      width: json['width'] as int,
-      height: json['height'] as int,
-      fileSize: json['file_size'] as int?,
+      width: (json['width'] as num).toInt(),
+      height: (json['height'] as num).toInt(),
+      fileSize: (json['file_size'] as num?)?.toInt(),
     );
 
 Map<String, dynamic> _$PhotoSizeToJson(PhotoSize instance) {
@@ -3612,8 +3614,9 @@ PollAnswer _$PollAnswerFromJson(Map<String, dynamic> json) => PollAnswer(
       user: json['user'] == null
           ? null
           : User.fromJson(json['user'] as Map<String, dynamic>),
-      optionIds:
-          (json['option_ids'] as List<dynamic>).map((e) => e as int).toList(),
+      optionIds: (json['option_ids'] as List<dynamic>)
+          .map((e) => (e as num).toInt())
+          .toList(),
     );
 
 Map<String, dynamic> _$PollAnswerToJson(PollAnswer instance) {
@@ -3635,7 +3638,7 @@ Map<String, dynamic> _$PollAnswerToJson(PollAnswer instance) {
 
 PollOption _$PollOptionFromJson(Map<String, dynamic> json) => PollOption(
       text: json['text'] as String,
-      voterCount: json['voter_count'] as int,
+      voterCount: (json['voter_count'] as num).toInt(),
     );
 
 Map<String, dynamic> _$PollOptionToJson(PollOption instance) =>
@@ -3650,18 +3653,18 @@ Poll _$PollFromJson(Map<String, dynamic> json) => Poll(
       options: (json['options'] as List<dynamic>)
           .map((e) => PollOption.fromJson(e as Map<String, dynamic>))
           .toList(),
-      totalVoterCount: json['total_voter_count'] as int,
+      totalVoterCount: (json['total_voter_count'] as num).toInt(),
       isClosed: json['is_closed'] as bool,
       isAnonymous: json['is_anonymous'] as bool,
       type: json['type'] as String,
       allowsMultipleAnswers: json['allows_multiple_answers'] as bool,
-      correctOptionId: json['correct_option_id'] as int?,
+      correctOptionId: (json['correct_option_id'] as num?)?.toInt(),
       explanation: json['explanation'] as String?,
       explanationEntities: (json['explanation_entities'] as List<dynamic>?)
           ?.map((e) => MessageEntity.fromJson(e as Map<String, dynamic>))
           .toList(),
-      openPeriod: json['open_period'] as int?,
-      closeDate: json['close_date'] as int?,
+      openPeriod: (json['open_period'] as num?)?.toInt(),
+      closeDate: (json['close_date'] as num?)?.toInt(),
     );
 
 Map<String, dynamic> _$PollToJson(Poll instance) {
@@ -3696,7 +3699,7 @@ PreCheckoutQuery _$PreCheckoutQueryFromJson(Map<String, dynamic> json) =>
       id: json['id'] as String,
       from: User.fromJson(json['from'] as Map<String, dynamic>),
       currency: json['currency'] as String,
-      totalAmount: json['total_amount'] as int,
+      totalAmount: (json['total_amount'] as num).toInt(),
       invoicePayload: json['invoice_payload'] as String,
       shippingOptionId: json['shipping_option_id'] as String?,
       orderInfo: json['order_info'] == null
@@ -3729,7 +3732,7 @@ ProximityAlertTriggered _$ProximityAlertTriggeredFromJson(
     ProximityAlertTriggered(
       traveler: User.fromJson(json['traveler'] as Map<String, dynamic>),
       watcher: User.fromJson(json['watcher'] as Map<String, dynamic>),
-      distance: json['distance'] as int,
+      distance: (json['distance'] as num).toInt(),
     );
 
 Map<String, dynamic> _$ProximityAlertTriggeredToJson(
@@ -3803,8 +3806,8 @@ Map<String, dynamic> _$ReplyMarkupToJson(ReplyMarkup instance) =>
 
 ResponseParameters _$ResponseParametersFromJson(Map<String, dynamic> json) =>
     ResponseParameters(
-      migrateToChatId: json['migrate_to_chat_id'] as int?,
-      retryAfter: json['retry_after'] as int?,
+      migrateToChatId: (json['migrate_to_chat_id'] as num?)?.toInt(),
+      retryAfter: (json['retry_after'] as num?)?.toInt(),
     );
 
 Map<String, dynamic> _$ResponseParametersToJson(ResponseParameters instance) {
@@ -3854,7 +3857,7 @@ ErrorResponse _$ErrorResponseFromJson(Map<String, dynamic> json) =>
     ErrorResponse(
       ok: json['ok'] as bool,
       description: json['description'] as String,
-      errorCode: json['error_code'] as int,
+      errorCode: (json['error_code'] as num).toInt(),
       parameters: json['parameters'] == null
           ? null
           : ResponseParameters.fromJson(
@@ -3986,8 +3989,8 @@ Map<String, dynamic> _$StickerSetToJson(StickerSet instance) {
 Sticker _$StickerFromJson(Map<String, dynamic> json) => Sticker(
       fileId: json['file_id'] as String,
       fileUniqueId: json['file_unique_id'] as String,
-      width: json['width'] as int,
-      height: json['height'] as int,
+      width: (json['width'] as num).toInt(),
+      height: (json['height'] as num).toInt(),
       isAnimated: json['is_animated'] as bool,
       isVideo: json['is_video'] as bool,
       thumbnail: json['thumbnail'] == null
@@ -4004,7 +4007,7 @@ Sticker _$StickerFromJson(Map<String, dynamic> json) => Sticker(
               json['mask_position'] as Map<String, dynamic>),
       customEmojiId: json['custom_emoji_id'] as String?,
       needsRepainting: json['needs_repainting'] as bool?,
-      fileSize: json['file_size'] as int?,
+      fileSize: (json['file_size'] as num?)?.toInt(),
     );
 
 Map<String, dynamic> _$StickerToJson(Sticker instance) {
@@ -4041,7 +4044,7 @@ Map<String, dynamic> _$StoryToJson(Story instance) => <String, dynamic>{};
 SuccessfulPayment _$SuccessfulPaymentFromJson(Map<String, dynamic> json) =>
     SuccessfulPayment(
       currency: json['currency'] as String,
-      totalAmount: json['total_amount'] as int,
+      totalAmount: (json['total_amount'] as num).toInt(),
       invoicePayload: json['invoice_payload'] as String,
       shippingOptionId: json['shipping_option_id'] as String?,
       orderInfo: json['order_info'] == null
@@ -4100,7 +4103,7 @@ Map<String, dynamic> _$SwitchInlineQueryChosenChatToJson(
 }
 
 Update _$UpdateFromJson(Map<String, dynamic> json) => Update(
-      updateId: json['update_id'] as int,
+      updateId: (json['update_id'] as num).toInt(),
       message: json['message'] == null
           ? null
           : Message.fromJson(json['message'] as Map<String, dynamic>),
@@ -4183,7 +4186,7 @@ Map<String, dynamic> _$UpdateToJson(Update instance) {
 
 UserProfilePhotos _$UserProfilePhotosFromJson(Map<String, dynamic> json) =>
     UserProfilePhotos(
-      totalCount: json['total_count'] as int,
+      totalCount: (json['total_count'] as num).toInt(),
       photos: (json['photos'] as List<dynamic>)
           .map((e) => (e as List<dynamic>)
               .map((e) => PhotoSize.fromJson(e as Map<String, dynamic>))
@@ -4200,8 +4203,8 @@ Map<String, dynamic> _$UserProfilePhotosToJson(UserProfilePhotos instance) =>
     };
 
 UserShared _$UserSharedFromJson(Map<String, dynamic> json) => UserShared(
-      requestId: json['request_id'] as int,
-      userId: json['user_id'] as int,
+      requestId: (json['request_id'] as num).toInt(),
+      userId: (json['user_id'] as num).toInt(),
     );
 
 Map<String, dynamic> _$UserSharedToJson(UserShared instance) =>
@@ -4211,7 +4214,7 @@ Map<String, dynamic> _$UserSharedToJson(UserShared instance) =>
     };
 
 User _$UserFromJson(Map<String, dynamic> json) => User(
-      id: json['id'] as int,
+      id: (json['id'] as num).toInt(),
       isBot: json['is_bot'] as bool,
       firstName: json['first_name'] as String,
       lastName: json['last_name'] as String?,
@@ -4281,12 +4284,12 @@ Map<String, dynamic> _$VenueToJson(Venue instance) {
 VideoNote _$VideoNoteFromJson(Map<String, dynamic> json) => VideoNote(
       fileId: json['file_id'] as String,
       fileUniqueId: json['file_unique_id'] as String,
-      length: json['length'] as int,
-      duration: json['duration'] as int,
+      length: (json['length'] as num).toInt(),
+      duration: (json['duration'] as num).toInt(),
       thumbnail: json['thumbnail'] == null
           ? null
           : PhotoSize.fromJson(json['thumbnail'] as Map<String, dynamic>),
-      fileSize: json['file_size'] as int?,
+      fileSize: (json['file_size'] as num?)?.toInt(),
     );
 
 Map<String, dynamic> _$VideoNoteToJson(VideoNote instance) {
@@ -4311,15 +4314,15 @@ Map<String, dynamic> _$VideoNoteToJson(VideoNote instance) {
 Video _$VideoFromJson(Map<String, dynamic> json) => Video(
       fileId: json['file_id'] as String,
       fileUniqueId: json['file_unique_id'] as String,
-      width: json['width'] as int,
-      height: json['height'] as int,
-      duration: json['duration'] as int,
+      width: (json['width'] as num).toInt(),
+      height: (json['height'] as num).toInt(),
+      duration: (json['duration'] as num).toInt(),
       thumbnail: json['thumbnail'] == null
           ? null
           : PhotoSize.fromJson(json['thumbnail'] as Map<String, dynamic>),
       fileName: json['file_name'] as String?,
       mimeType: json['mime_type'] as String?,
-      fileSize: json['file_size'] as int?,
+      fileSize: (json['file_size'] as num?)?.toInt(),
     );
 
 Map<String, dynamic> _$VideoToJson(Video instance) {
@@ -4346,7 +4349,7 @@ Map<String, dynamic> _$VideoToJson(Video instance) {
 
 VoiceChatEnded _$VoiceChatEndedFromJson(Map<String, dynamic> json) =>
     VoiceChatEnded(
-      duration: json['duration'] as int,
+      duration: (json['duration'] as num).toInt(),
     );
 
 Map<String, dynamic> _$VoiceChatEndedToJson(VoiceChatEnded instance) =>
@@ -4378,7 +4381,7 @@ Map<String, dynamic> _$VoiceChatParticipantsInvitedToJson(
 
 VoiceChatScheduled _$VoiceChatScheduledFromJson(Map<String, dynamic> json) =>
     VoiceChatScheduled(
-      json['start_date'] as int,
+      (json['start_date'] as num).toInt(),
     );
 
 Map<String, dynamic> _$VoiceChatScheduledToJson(VoiceChatScheduled instance) =>
@@ -4395,9 +4398,9 @@ Map<String, dynamic> _$VoiceChatStartedToJson(VoiceChatStarted instance) =>
 Voice _$VoiceFromJson(Map<String, dynamic> json) => Voice(
       fileId: json['file_id'] as String,
       fileUniqueId: json['file_unique_id'] as String,
-      duration: json['duration'] as int,
+      duration: (json['duration'] as num).toInt(),
       mimeType: json['mime_type'] as String?,
-      fileSize: json['file_size'] as int?,
+      fileSize: (json['file_size'] as num?)?.toInt(),
     );
 
 Map<String, dynamic> _$VoiceToJson(Voice instance) {
@@ -4441,13 +4444,13 @@ Map<String, dynamic> _$WebAppInfoToJson(WebAppInfo instance) =>
 WebhookInfo _$WebhookInfoFromJson(Map<String, dynamic> json) => WebhookInfo(
       url: json['url'] as String,
       hasCustomCertificate: json['has_custom_certificate'] as bool,
-      pendingUpdateCount: json['pending_update_count'] as int,
+      pendingUpdateCount: (json['pending_update_count'] as num).toInt(),
       ipAddress: json['ip_address'] as String?,
-      lastErrorDate: json['last_error_date'] as int?,
+      lastErrorDate: (json['last_error_date'] as num?)?.toInt(),
       lastErrorMessage: json['last_error_message'] as String?,
       lastSynchronizationErrorDate:
-          json['last_synchronization_error_date'] as int?,
-      maxConnections: json['max_connections'] as int?,
+          (json['last_synchronization_error_date'] as num?)?.toInt(),
+      maxConnections: (json['max_connections'] as num?)?.toInt(),
       allowedUpdates: (json['allowed_updates'] as List<dynamic>?)
           ?.map((e) => e as String)
           .toList(),

@@ -18,18 +18,28 @@
 
 part of '../model.dart';
 
-/// This object represents a dice with random value from 1 to 6. (Yes, we're aware of the “proper” singular of die. But it's awkward, and we decided to help it change. One dice at a time!)
+/// This object represents a bot command.
 ///
-/// https://core.telegram.org/bots/api#dice
+/// https://core.telegram.org/bots/api#botcommand
 @JsonSerializable(fieldRename: FieldRename.snake)
 class BotCommand {
-  String command;
-  String description;
   BotCommand({
     required this.command,
     required this.description,
-  });
-  factory BotCommand.fromJson(Map<String, dynamic> json) =>
-      _$BotCommandFromJson(json);
+  })
+  : assert(command.isNotEmpty, 'Command cannot be empty'),
+    assert(command.length <= 32, 'Command cannot exceed 32 characters'),
+    assert(
+      command.replaceAll(RegExp(r'^[a-z0-9_]+$'), '').isEmpty,
+      'Command `$command` can only contain lowercase, digit and underscore',
+    ),
+    assert(description.isNotEmpty, 'Description cannot be empty'),
+    assert(description.length <= 256, 'Description cannot exceed 256 characters');
+  
+  final String command;
+  final String description;
+
+  factory BotCommand.fromJson(Map<String, dynamic> json) => _$BotCommandFromJson(json);
+
   Map<String, dynamic> toJson() => _$BotCommandToJson(this);
 }
